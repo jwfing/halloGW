@@ -27,7 +27,7 @@ public class OnlineUpdateStressTests extends TestCase {
 //        for (int i = 0;i < 10000; i++) {
 //            userIds.add("user-" + i);
 //        }
-        final int userCnt = 10000;
+        final int userCnt = 1000;
         final int threadCnt = 10;
         final int loopCntPerThread = 10;
         Thread threads[] = new Thread[threadCnt];

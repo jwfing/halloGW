@@ -27,7 +27,8 @@ public class RedisDelayQueueListener implements CommandLineRunner {
             public void invoke(String delayMessage) {
                 //这里调用你延迟之后的代码,在这里执行业务处理
                 if (redisDelayedQueueManager.onlineCheck(delayMessage)) {
-                    redisDelayedQueueManager.offerDelayedQueue(delayMessage, 125,151, TimeUnit.SECONDS);
+                    redisDelayedQueueManager.offerDelayedQueue(delayMessage,
+                            125, Constaints.MAX_DELAY_INTERVAL, TimeUnit.SECONDS);
                     System.out.println("re-queue user: " + delayMessage);
                 } else {
                     System.out.println(">>>>>===== user expired: " + delayMessage);

@@ -29,6 +29,7 @@ public class DelayedTaskController {
     @RequestMapping("/online")
     public void addDelayedMessage(String value) {
         // value is user's id.
-        redisDelayedQueueManager.addOrRefreshOnlineTime(value, 125, 151, TimeUnit.SECONDS);
+        redisDelayedQueueManager.addOrRefreshOnlineTime(value, 125,
+                Constaints.MAX_DELAY_INTERVAL, TimeUnit.SECONDS);
     }
 }
