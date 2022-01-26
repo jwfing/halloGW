@@ -66,7 +66,7 @@ public class OnlineUpdateStressTests extends TestCase {
             });
             threads[threadIdx].start();
         }
-        for (int threadIdx = 0; threadIdx < 20; threadIdx++) {
+        for (int threadIdx = 0; threadIdx < threadCnt; threadIdx++) {
             threads[threadIdx].join();
         }
     }
