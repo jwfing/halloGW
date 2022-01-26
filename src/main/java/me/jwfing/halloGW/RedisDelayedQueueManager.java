@@ -31,10 +31,10 @@ public class RedisDelayedQueueManager {
         RBucket<String> onlineBucket = redissonClient.getBucket(onlineBucketName + t, StringCodec.INSTANCE);
         if (!ONLIE_VALUE.equals(onlineBucket.getAndSet(ONLIE_VALUE, ttl, TimeUnit.SECONDS))) {
             // first occ
-            System.out.println("first occ for user: " + t.toString());
+//            System.out.println("first occ for user: " + t.toString());
             offerDelayedQueue(t, ttl, delay, timeUnit);
         } else {
-            System.out.println("renew online token for user: " + t.toString());
+//            System.out.println("renew online token for user: " + t.toString());
         }
     }
 

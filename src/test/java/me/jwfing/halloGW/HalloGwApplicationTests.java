@@ -8,6 +8,7 @@ class HalloGwApplicationTests {
 
 	@Test
 	void contextLoads() {
+		System.out.println("OK");
 	}
 
 }
