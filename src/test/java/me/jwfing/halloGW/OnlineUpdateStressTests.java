@@ -1,8 +1,6 @@
 package me.jwfing.halloGW;
 
-import junit.framework.TestCase;
-import junit.framework.TestSuite;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import reactor.core.publisher.Mono;
 import reactor.netty.ByteBufMono;
 import reactor.netty.http.client.HttpClient;
@@ -11,15 +9,7 @@ import reactor.netty.http.client.HttpClientResponse;
 import java.util.ArrayList;
 import java.util.function.BiFunction;
 
-public class OnlineUpdateStressTests extends TestCase {
-    public OnlineUpdateStressTests(String name) {
-        super(name);
-    }
-
-    public static junit.framework.Test suite() {
-        return new TestSuite(OnlineUpdateStressTests.class);
-    }
-
+public class OnlineUpdateStressTests {
     @Test
     public void testUpdateOnlineStatus() throws Exception {
 //        HttpClient client = reactor.netty.http.client.HttpClient.create().baseUrl("http://localhost:8080");
@@ -27,7 +17,7 @@ public class OnlineUpdateStressTests extends TestCase {
 //        for (int i = 0;i < 10000; i++) {
 //            userIds.add("user-" + i);
 //        }
-        final int userCnt = 1000;
+        final int userCnt = 2000;
         final int threadCnt = 10;
         final int loopCntPerThread = 5;
         Thread threads[] = new Thread[threadCnt];
