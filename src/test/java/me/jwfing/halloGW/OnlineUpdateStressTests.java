@@ -31,7 +31,7 @@ public class OnlineUpdateStressTests {
                     for (int i = 0;i < userCnt; i++) {
                         userIds.add(appId + ":user-" + idx + "-" + i);
                     }
-                    HttpClient client = reactor.netty.http.client.HttpClient.create().baseUrl("http://localhost:8080");
+                    HttpClient client = reactor.netty.http.client.HttpClient.create().baseUrl("http://117.50.162.77");
                     for (int loop = 0; loop < loopCntPerThread; loop++) {
                         long loopStart = System.currentTimeMillis();
                         for (int i = 0;i < userCnt; i++) {
