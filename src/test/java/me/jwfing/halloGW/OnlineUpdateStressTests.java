@@ -20,6 +20,7 @@ public class OnlineUpdateStressTests {
         final int userCnt = 2000;
         final int threadCnt = 10;
         final int loopCntPerThread = 5;
+        final String appId = DelayedTaskController.getRandomString(16);
         Thread threads[] = new Thread[threadCnt];
         for (int threadIdx = 0; threadIdx < threadCnt; threadIdx++) {
             final int idx = threadIdx;
@@ -28,7 +29,7 @@ public class OnlineUpdateStressTests {
                 public void run() {
                     ArrayList userIds = new ArrayList(userCnt);
                     for (int i = 0;i < userCnt; i++) {
-                        userIds.add("user-" + idx + "-" + i);
+                        userIds.add(appId + ":user-" + idx + "-" + i);
                     }
                     HttpClient client = reactor.netty.http.client.HttpClient.create().baseUrl("http://localhost:8080");
                     for (int loop = 0; loop < loopCntPerThread; loop++) {

@@ -1,5 +1,6 @@
 package me.jwfing.halloGW;
 
+import com.codahale.metrics.ConsoleReporter;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.gateway.route.RouteLocator;
@@ -9,11 +10,16 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import reactor.core.publisher.Mono;
 
 import java.util.Date;
+import java.util.concurrent.TimeUnit;
 
 @SpringBootApplication
 public class HalloGwApplication {
 
 	public static void main(String[] args) {
+		ConsoleReporter reporter = ConsoleReporter.forRegistry(DelayedTaskController.metricRegistry).build();
+		reporter.start(3, TimeUnit.MINUTES);
+		reporter.report();
+
 		SpringApplication.run(HalloGwApplication.class, args);
 	}
 
