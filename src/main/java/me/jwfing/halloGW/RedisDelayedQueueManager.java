@@ -1,19 +1,32 @@
 package me.jwfing.halloGW;
 
+import org.redisson.Redisson;
 import org.redisson.api.RBlockingQueue;
 import org.redisson.api.RBucket;
 import org.redisson.api.RDelayedQueue;
 import org.redisson.api.RedissonClient;
 import org.redisson.client.codec.StringCodec;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.redisson.config.Config;
 import org.springframework.stereotype.Component;
 
 import java.util.concurrent.TimeUnit;
 
 @Component
 public class RedisDelayedQueueManager {
-    @Autowired
-    RedissonClient redissonClient;
+    Config config = null;
+    RedissonClient redissonClient = null;
+
+    public RedisDelayedQueueManager() {
+        config = new Config();
+        config.setCodec(StringCodec.INSTANCE).useSingleServer().setAddress("redis://localhost:6379")
+                .setPingConnectionInterval(3000)
+                .setTimeout(10000)
+                .setConnectionMinimumIdleSize(10);
+        redissonClient = Redisson.create(config);
+    }
+
+//    @Autowired
+//    RedissonClient redissonClient;
 
     private static String onlineBucketName = "onlineBucket-";
     private static String delayQueueName = "DelayMessage";
