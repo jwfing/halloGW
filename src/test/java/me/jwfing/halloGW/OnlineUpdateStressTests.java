@@ -29,7 +29,7 @@ public class OnlineUpdateStressTests extends TestCase {
 //        }
         final int userCnt = 1000;
         final int threadCnt = 10;
-        final int loopCntPerThread = 10;
+        final int loopCntPerThread = 5;
         Thread threads[] = new Thread[threadCnt];
         for (int threadIdx = 0; threadIdx < threadCnt; threadIdx++) {
             final int idx = threadIdx;
@@ -44,7 +44,7 @@ public class OnlineUpdateStressTests extends TestCase {
                     for (int loop = 0; loop < loopCntPerThread; loop++) {
                         long loopStart = System.currentTimeMillis();
                         for (int i = 0;i < userCnt; i++) {
-                            client.get().uri("/delayed/online?value="+ userIds.get(i)).responseSingle(
+                            client.post().uri("/delayed/online?value="+ userIds.get(i)).responseSingle(
                                     new BiFunction<HttpClientResponse, ByteBufMono, Mono<String>>() {
                                         @Override
                                         public Mono<String> apply(HttpClientResponse httpClientResponse, ByteBufMono byteBufMono) {
